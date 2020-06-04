@@ -10,7 +10,7 @@ def enCrypt(message):
 
     f = Fernet(key)
     encrypted = f.encrypt(encoded)
-    map = open('map.txt','ab')
+    map = open('map.enc', 'ab')
     map.write(encrypted+b'\n')
     map.close()
     print(encrypted)
