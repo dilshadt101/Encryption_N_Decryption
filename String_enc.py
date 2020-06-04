@@ -8,8 +8,11 @@ def enCrypt(message):
 
     encoded = message.encode()
 
-    f= Fernet(key)
+    f = Fernet(key)
     encrypted = f.encrypt(encoded)
+    map = open('map.txt','ab')
+    map.write(encrypted+b'\n')
+    map.close()
     print(encrypted)
 
 
