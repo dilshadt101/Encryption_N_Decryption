@@ -1,5 +1,11 @@
 from Crypto.Cipher import AES
 from base64 import b64encode, b64decode
+from Crypto.Hash import SHA256
+
+
+def getKey(password):
+    hasher = SHA256.new(password.encode('utf-8'))
+    return hasher.digest()
 
 
 class Crypt:
@@ -40,29 +46,24 @@ class Crypt:
 
 def main():
     test_crpt = Crypt()
-    test_text = """Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum."""
 
-    test_key = 'MyKey4TestingYnP'
-    test_enc_text = test_crpt.encrypt(test_text, test_key)
-    test_dec_text = test_crpt.decrypt(test_enc_text, test_key)
-    print(f'Encrypted:{test_enc_text}  Decrypted:{test_dec_text}')
+    print("\nE => Enccryption\nD => Decryption \n")
+
+    ch = input("what do you want to do :")
+
+    if ch == 'E' or ch == 'e':
+        message = input("Message for encryption:")
+        pswd = getKey(input("password:"))
+        test_enc_text = test_crpt.encrypt(message, pswd)
+        print(f'Encrypted:{test_enc_text}')
+    elif ch == 'D' or ch == 'd':
+        message = input("Message for decryption:")
+        pswd = getKey(input("password:"))
+        test_dec_text = test_crpt.decrypt(message, pswd)
+        print(f'Decrypted:{test_dec_text}')
+    else:
+        print("!!! Invalid choice !!!")
+
 
 
 
