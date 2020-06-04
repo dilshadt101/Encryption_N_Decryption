@@ -6,7 +6,7 @@ def deCrypt(encrypted):
     key = file.read()
     file.close()
 
-    encrypted = bytes(encrypted,'utf-8')
+
     f = Fernet(key)
     decrypted = f.decrypt(encrypted)
 
@@ -14,5 +14,10 @@ def deCrypt(encrypted):
     print(orginal_msg)
 
 
-message = input("Encrypted string : ")
-deCrypt(message)
+
+with open('map.txt','rb') as f:
+    while True:
+        msg = f.readline()
+        if not msg:
+            break
+        deCrypt(msg)
