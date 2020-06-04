@@ -13,5 +13,5 @@ def enCrypt(message):
     print(encrypted)
 
 
-message = input("Message for encryption:")
+message = input("String : ")
 enCrypt(message)

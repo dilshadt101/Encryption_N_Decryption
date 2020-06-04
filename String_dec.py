@@ -14,5 +14,5 @@ def deCrypt(encrypted):
     print(orginal_msg)
 
 
-message = input("Message for decryption:")
+message = input("Encrypted string : ")
 deCrypt(message)
