@@ -15,7 +15,7 @@ def deCrypt(encrypted):
 
 
 
-with open('map.txt','rb') as f:
+with open('map.enc', 'rb') as f:
     while True:
         msg = f.readline()
         if not msg:
